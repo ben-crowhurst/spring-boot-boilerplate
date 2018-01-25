@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# don't do anything if astyle command is not available
+command -v astyle >/dev/null 2>&1 || { exit 0; }
+
+# get the root directory for the repository
+RootDir=`git rev-parse --show-toplevel`
+
+# get all the files that are staged
+for v in `git diff --name-only --cached`
+do
+    # if it is java file
+    if [[ $v == *.java ]]
+    then
+        astyle --style=java "$RootDir/$v" > /dev/null 2>&1
+        # remove the .orig file created by astyle
+        [ -f "$RootDir/$v"".orig" ] && rm -f "$RootDir/$v"".orig"
+ 
+        # stage the modified file
+        # its ok if the file is unchanged after running astyle
+        git add "$RootDir/$v"
+    fi
+done
+
+exit 0
