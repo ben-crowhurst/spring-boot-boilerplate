@@ -6,7 +6,7 @@ Feature: HTTP TRACE
     I want to disallow the HTTP TRACE method
 
     Scenario Outline: HTTP Trace verb.
-        Given I have started a message exchange
+        Given I have started a message daemon
         When I perform a HTTP "TRACE" request to "/messages" with headers "Accept: application/json, Host: localhost:1984"
         Then I should see a response status code of "501" "Not Implemented"
         And I should see a "Content-Type" header value "application/json; charset=utf-8"

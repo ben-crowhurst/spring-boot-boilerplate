@@ -6,7 +6,7 @@ Feature: HTTP GET
     I want to allow the HTTP GET method
 
     Scenario Outline: HTTP Get verb, empty collection.
-        Given I have started a message exchange
+        Given I have started a message daemon
         When I perform a HTTP "GET" request to "/messages" with headers "Content-Type: application/json, Accept: application/json"
         Then I should see a response status code of "200" "OK"
         And I should see a "Server" header value "messengerd"

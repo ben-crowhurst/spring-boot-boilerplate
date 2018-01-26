@@ -6,7 +6,7 @@ Feature: HTTP PUT
     I want to disallow the HTTP PUT method
 
     Scenario Outline: HTTP Put verb.
-        Given I have started a message exchange
+        Given I have started a message daemon
         When I perform a HTTP "PUT" request to "/messages" with headers "Content-Type: application/json, Accept: application/json":
         """
         " { "meta": {                                                                                        "

@@ -116,7 +116,7 @@ Feature: HTTP POST
         """
 
     Scenario Outline: HTTP Post verb, malformed resource.
-        Given I have started a message exchange
+        Given I have started a message daemon
         When I perform a HTTP "POST" request to "/messages" with headers "Content-Type: application/json, Accept: application/json":
         """
         " { "data": 1."
@@ -163,7 +163,7 @@ Feature: HTTP POST
         """
 
     Scenario Outline: HTTP Post verb, duplicate resource keys.
-        Given I have started a message exchange
+        Given I have started a message daemon
         And I perform a HTTP "POST" request to "/messages" with headers "Content-Type: application/json, Accept: application/json":
         """
         " { "meta": {                                                          "

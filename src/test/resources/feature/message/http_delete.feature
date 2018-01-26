@@ -53,7 +53,7 @@ Feature: HTTP DELETE
         And I should see an empty response
 
     Scenario Outline: HTTP Delete verb, non-existent resource.
-        Given I have started a message exchange
+        Given I have started a message daemon
         When I perform a HTTP "GET" request to "/messages/2b1456f3-0d64-4823-9922-943b355e23fe" with headers "Accept: application/json"
         Then I should see a response status code of "404" "Not Found"
         And I should see a "Server" header value "messengerd"
