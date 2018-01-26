@@ -53,7 +53,7 @@ Feature: HTTP GET
         And I should see a response body describing the resource:
         """
         " { "meta": {                                                          "
-        "     "status": "pending"                                              "
+        "     "status": "pending",                                             "
         "     "key": "7c3cf0d2-7445-4132-a2e6-13895756a613"                    "
         "   },                                                                 "
         "   "data": {                                                          "
@@ -64,7 +64,7 @@ Feature: HTTP GET
         " }                                                                    "
         """
 
-    Scenario Outline: HTTP Get non-existent resource.
+    Scenario Outline: HTTP Get verb, non-existent resource.
         Given I have started a message exchange
         When I perform a HTTP "GET" request to "/messages/2b1456f3-0d64-4823-9922-923b655e22fe" with headers "Accept: application/json"
         Then I should see a response status code of "404" "Not Found"
