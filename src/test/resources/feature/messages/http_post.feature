@@ -33,7 +33,7 @@ Feature: HTTP POST
         And I should see a "Cache-Control" header value "private,max-age=0,no-cache,no-store"
         And I should see a "Vary" header value "Accept,Accept-Encoding,Accept-Charset,Accept-Language"
         And I should see a "Accept-Ranges" header value "none"
-        And I should see a "Allow" header value "GET,PUT,HEAD,DELETE,OPTIONS"
+        And I should see a "Allow" header value "GET,HEAD,DELETE,OPTIONS"
         And I should see a "Location" header value
         And I should not see a "WWW-Authenticate" header value
         And I should not see a "Trailer" header value
