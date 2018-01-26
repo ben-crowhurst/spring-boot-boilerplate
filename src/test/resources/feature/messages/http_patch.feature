@@ -7,7 +7,12 @@ Feature: HTTP PATCH
 
     Scenario Outline: HTTP Patch verb.
         Given I have started a message daemon
-        When I perform a HTTP "PATCH" request to "/messages" with headers "Accept: application/json"
+        When I perform a HTTP "PATCH" request to "/messages" with headers "Content-Type: application/json, Accept: application/json":
+        """
+        " {              "
+        "   "data": [ ]  "
+        " }              "
+        """
         Then I should see a response status code of "501" "Not Implemented"
         And I should see a "Content-Type" header value "application/json; charset=utf-8"
         And I should see a "Content-Length" header value "185"
