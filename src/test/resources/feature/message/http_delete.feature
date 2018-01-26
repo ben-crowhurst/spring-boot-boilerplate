@@ -52,7 +52,7 @@ Feature: HTTP DELETE
         And I should not see a "Content-Location" header value
         And I should see an empty response
 
-    Scenario Outline: HTTP Delete non-existent resource.
+    Scenario Outline: HTTP Delete verb, non-existent resource.
         Given I have started a message exchange
         When I perform a HTTP "GET" request to "/messages/2b1456f3-0d64-4823-9922-943b355e23fe" with headers "Accept: application/json"
         Then I should see a response status code of "404" "Not Found"
