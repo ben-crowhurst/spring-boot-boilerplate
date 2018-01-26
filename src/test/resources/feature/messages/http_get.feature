@@ -7,7 +7,7 @@ Feature: HTTP GET
 
     Scenario Outline: HTTP Get verb, empty collection.
         Given I have started a message daemon
-        When I perform a HTTP "GET" request to "/messages" with headers "Content-Type: application/json, Accept: application/json"
+        When I perform a HTTP "GET" request to "/messages" with headers "Accept: application/json"
         Then I should see a response status code of "200" "OK"
         And I should see a "Server" header value "messengerd"
         And I should see a "Content-Type" header value "application/json; charset=utf-8"
@@ -74,7 +74,7 @@ Feature: HTTP GET
         " }                                                                    "
         """
         And I should see a response status code of "201" "Accepted"
-        When I perform a HTTP "GET" request to "/messages" with headers "Content-Type: application/json, Accept: application/json"
+        When I perform a HTTP "GET" request to "/messages" with headers "Accept: application/json"
         Then I should see a response status code of "200" "OK"
         And I should see a "Server" header value "messengerd"
         And I should see a "Content-Type" header value "application/json; charset=utf-8"

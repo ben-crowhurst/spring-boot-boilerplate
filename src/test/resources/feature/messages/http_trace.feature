@@ -7,7 +7,7 @@ Feature: HTTP TRACE
 
     Scenario Outline: HTTP Trace verb.
         Given I have started a message daemon
-        When I perform a HTTP "TRACE" request to "/messages" with headers "Accept: application/json, Host: localhost:1984"
+        When I perform a HTTP "TRACE" request to "/messages" with headers "Accept: application/json"
         Then I should see a response status code of "501" "Not Implemented"
         And I should see a "Content-Type" header value "application/json; charset=utf-8"
         And I should see a "Content-Length" header value "185"

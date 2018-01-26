@@ -12,7 +12,10 @@ Feature: HTTP PATCH
         " message attachement data for message. "
         """
         And I should see a response status code of "200" "Created"
-        When I perform a HTTP "PATCH" request to the last response "Location" header value with headers "Accept: application/json"
+        When I perform a HTTP "PATCH" request to the last response "Location" header value with headers "Content-Type: text/html, Accept: application/json":
+        """
+        " Message Attachment "
+        """
         Then I should see a response status code of "501" "Not Implemented"
         And I should see a "Content-Type" header value "application/json; charset=utf-8"
         And I should see a "Content-Length" header value "185"
