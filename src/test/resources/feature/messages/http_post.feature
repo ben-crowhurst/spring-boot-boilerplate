@@ -7,7 +7,7 @@ Feature: HTTP POST
 
     Scenario Outline: HTTP Post verb.
         Given I have started a message daemon
-        And I perform a HTTP "POST" request to "/messages" with headers "Content-Type: application/json, Accept: application/json":
+        When I perform a HTTP "POST" request to "/messages" with headers "Content-Type: application/json, Accept: application/json":
         """
         " { "meta": {                                                          "
         "     "key": "bed0316c-d9c2-404b-8ac3-0540001bce99"                    "
@@ -64,7 +64,7 @@ Feature: HTTP POST
     
     Scenario Outline: HTTP Post verb, missing mandatory fields.
         Given I have started a message daemon
-        And I perform a HTTP "POST" request to "/messages" with headers "Content-Type: application/json, Accept: application/json":
+        When I perform a HTTP "POST" request to "/messages" with headers "Content-Type: application/json, Accept: application/json":
         """
         " { "meta": {                                                                              "
         "     "key": "bed0316c-d9c2-404b-8ac3-0540001bce99"                                        "
