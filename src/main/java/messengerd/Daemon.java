@@ -1,4 +1,4 @@
-package daemon;
+package messengerd;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
