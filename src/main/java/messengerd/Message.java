@@ -10,8 +10,8 @@ public class Message {
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private long id = 0;
-    public long getId() {
+    private Long id = 0L;
+    public Long getId() {
         return id;
     }
     public void setId(Long value) {
