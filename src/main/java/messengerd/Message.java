@@ -1,31 +1,40 @@
 package messengerd;
 
-import java.time.*;
-import java.util.*;
+import javax.persistence.*;
 
+@Entity
 public class Message {
     public Message() {
-        timestamp = Instant.now().getEpochSecond();
-        status = "pending";
-        key = UUID.randomUUID().toString();
-        content = "";
-        from = "";
-        to = new String[0];
-        cc = new String[0];
-        bcc = new String[0];
+        return;
     }
 
-    private final long timestamp;
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    private long id = 0;
+    public long getId() {
+        return id;
+    }
+    public void setId(Long value) {
+        id = value;
+    }
+
+    private long createdTimestamp = 0;
     public long getCreatedTimestamp() {
-        return timestamp;
+        return createdTimestamp;
+    }
+    public void setCreatedTimestamp(long value) {
+        createdTimestamp = value;
     }
 
-    private String status;
+    private String status = "";
     public String getStatus() {
         return status;
     }
+    public void setStatus(String value) {
+        status = value;
+    }
 
-    private String key;
+    private String key = "";
     public String getKey() {
         return key;
     }
@@ -33,7 +42,7 @@ public class Message {
         key = value;
     }
 
-    private String content;
+    private String content = "";
     public String getContent() {
         return content;
     }
@@ -41,7 +50,7 @@ public class Message {
         content = value;
     }
 
-    private String from;
+    private String from = "";
     public String getFromRecipient() {
         return from;
     }
@@ -49,7 +58,7 @@ public class Message {
         from = value;
     }
 
-    private String[] to;
+    private String[] to = { };
     public String[] getToRecipients() {
         return to;
     }
@@ -57,19 +66,19 @@ public class Message {
         to = values;
     }
 
-    private String[] cc;
+    private String[] cc = { };
     public String[] getCarbonCopyRecipients() {
         return cc;
     }
     public void setCarbonCopyRecipients(String[] values) {
-        to = values;
+        cc = values;
     }
 
-    private String[] bcc;
+    private String[] bcc = { };
     public String[] getBlindCarbonCopyRecipients() {
         return bcc;
     }
     public void setBlindCarbonCopyRecipients(String[] values) {
-        to = values;
+        bcc = values;
     }
 }

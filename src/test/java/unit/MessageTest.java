@@ -1,7 +1,6 @@
 package messengerd;
 
 import org.junit.*;
-import java.time.*;
 
 import static org.junit.Assert.*;
 import static org.hamcrest.Matchers.*;
@@ -11,10 +10,9 @@ public class MessageTest {
 
     @Test
     public void defaultInstanceValues() {
-        long now = Instant.now().getEpochSecond();
-        assertThat(message.getCreatedTimestamp(), anyOf(greaterThan(now), equalTo(now)));
-        assertThat(message.getStatus(), equalToIgnoringCase("pending"));
-        assertThat(message.getKey(), not(isEmptyString()));
+        assertThat(message.getCreatedTimestamp(), is(0L));
+        assertThat(message.getStatus(), isEmptyString());
+        assertThat(message.getKey(), isEmptyString());
         assertThat(message.getContent(), isEmptyString());
         assertThat(message.getFromRecipient(), isEmptyString());
         assertThat(message.getToRecipients(), is(emptyArray()));

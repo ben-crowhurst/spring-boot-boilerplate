@@ -1,15 +1,23 @@
 package messengerd;
 
-import java.util.*;
+import javax.persistence.*;
 
 public class Attachment {
     public Attachment() {
-        key = UUID.randomUUID().toString();
-        content = new byte[0];
-        contentType = "";
+        return;
     }
 
-    private String key;
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    private long id = 0;
+    public long getId() {
+        return id;
+    }
+    public void setId(Long value) {
+        id = value;
+    }
+
+    private String key = "";
     public String getKey() {
         return key;
     }
@@ -17,7 +25,7 @@ public class Attachment {
         key = value;
     }
 
-    private byte[] content;
+    private byte[] content = { };
     public byte[] getContent() {
         return content;
     }
@@ -25,7 +33,7 @@ public class Attachment {
         content = value;
     }
 
-    private String contentType;
+    private String contentType = "";
     public String getContentType() {
         return contentType;
     }
