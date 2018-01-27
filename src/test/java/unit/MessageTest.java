@@ -14,7 +14,7 @@ public class MessageTest {
         long now = Instant.now().getEpochSecond();
         assertThat(message.getCreatedTimestamp(), anyOf(greaterThan(now), equalTo(now)));
         assertThat(message.getStatus(), equalToIgnoringCase("pending"));
-        assertThat(message.getKey(), isEmptyString());
+        assertThat(message.getKey(), not(isEmptyString()));
         assertThat(message.getContent(), isEmptyString());
         assertThat(message.getFromRecipient(), isEmptyString());
         assertThat(message.getToRecipients(), is(emptyArray()));

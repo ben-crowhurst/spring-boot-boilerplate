@@ -1,12 +1,13 @@
 package messengerd;
 
 import java.time.*;
+import java.util.*;
 
 public class Message {
     public Message() {
         timestamp = Instant.now().getEpochSecond();
         status = "pending";
-        key = "";
+        key = UUID.randomUUID().toString();
         content = "";
         from = "";
         to = new String[0];

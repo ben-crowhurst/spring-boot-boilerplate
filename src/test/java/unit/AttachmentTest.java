@@ -10,7 +10,7 @@ public class AttachmentTest {
 
     @Test
     public void defaultInstanceValues() {
-        assertThat(attachment.getKey(), isEmptyString());
+        assertThat(attachment.getKey(), not(isEmptyString()));
         assertThat(attachment.getContent(), is(new byte[0]));
         assertThat(attachment.getContentType(), isEmptyString());
     }

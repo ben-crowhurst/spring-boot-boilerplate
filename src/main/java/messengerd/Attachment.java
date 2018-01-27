@@ -1,8 +1,10 @@
 package messengerd;
 
+import java.util.*;
+
 public class Attachment {
     public Attachment() {
-        key = "";
+        key = UUID.randomUUID().toString();
         content = new byte[0];
         contentType = "";
     }
