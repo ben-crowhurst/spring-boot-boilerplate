@@ -1,4 +1,4 @@
-package messengerd;
+package messenger.service;
 
 import javax.persistence.*;
 

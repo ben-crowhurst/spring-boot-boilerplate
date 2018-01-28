@@ -1,4 +1,4 @@
-package messengerd;
+package messenger.service;
 
 import java.util.*;
 import org.springframework.web.bind.annotation.*;

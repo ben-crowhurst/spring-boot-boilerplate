@@ -1,4 +1,4 @@
-package messengerd;
+package messenger.service;
 
 import static org.junit.Assert.*;
 import static org.hamcrest.Matchers.*;
