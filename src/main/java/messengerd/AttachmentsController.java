@@ -1,24 +1,22 @@
 package messengerd;
 
+import java.util.*;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.beans.factory.annotation.*;
 
 @RestController
+@RequestMapping("/attachments")
 public class AttachmentsController {
-    @RequestMapping(value="/attachments", method=RequestMethod.POST)
-    public Attachment create() {
+    @Autowired
+    private AttachmentRepository repository;
+
+    @RequestMapping(method=RequestMethod.POST)
+    public Attachment create(@RequestBody byte[] content, @RequestHeader(value="Content-Type") String contentType) {
         Attachment attachment = new Attachment();
-        return attachment;
-    }
+        attachment.setContent(content);
+        attachment.setContentType(contentType);
+        attachment.setKey(UUID.randomUUID().toString());
 
-    @RequestMapping(value="/attachments", method=RequestMethod.GET)
-    public Attachment[] read() {
-        Attachment[] attachments = new Attachment[0];
-        return attachments;
-    }
-
-    @RequestMapping(value="/attachments", method=RequestMethod.HEAD)
-    public Attachment[] head(@PathVariable("key") String key) {
-        Attachment[] attachments = new Attachment[0];
-        return attachments;
+        return repository.save(attachment);
     }
 }
