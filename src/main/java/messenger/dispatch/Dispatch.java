@@ -1,23 +1,28 @@
 package messenger.dispatch;
 
+import java.util.*;
 import java.util.concurrent.*;
 import org.springframework.stereotype.*;
 import org.springframework.beans.factory.annotation.*;
 
 @Service
 public class Dispatch implements Runnable {
+    private static List<MessageProvider> providers;
     @Autowired
-    public void setup(@Value("${dispatch.initialDelay:1500}") long initialDelay, @Value("${dispatch.delay:1000}") long delay) {
+    public void setProviders(List<MessageProvider> values) {
+        providers = values;
+    }
+
+    @Autowired
+    public void setup(@Value("${dispatch.delay:5000}") long delay, @Value("${dispatch.initialDelay:10000}") long initialDelay) {
         int corePoolSize = 1;
         ScheduledExecutorService executor = Executors.newScheduledThreadPool(corePoolSize);
         executor.scheduleWithFixedDelay(new Dispatch(), initialDelay, delay, TimeUnit.MILLISECONDS);
     }
 
     public void run() {
-        System.out.println("Running dispatch...");
-    }
-
-    private Dispatch() {
-        return;
+        for (MessageProvider provider : providers) {
+            provider.send(null);
+        }
     }
 }
