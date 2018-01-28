@@ -1,24 +1,36 @@
 package messengerd;
 
+import java.time.*;
+import java.util.*;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.beans.factory.annotation.*;
 
 @RestController
+@RequestMapping("/messages")
 public class MessagesController {
-    @RequestMapping(value="/messages", method=RequestMethod.POST)
-    public Message create() {
-        Message message = new Message();
-        return message;
+    @Autowired
+    private MessageRepository repository;
+
+    @RequestMapping(method=RequestMethod.POST)
+    public Message create(@RequestBody Message message) {
+        message.setStatus("pending");
+        message.setCreatedTimestamp(Instant.now().getEpochSecond());
+
+        String key = message.getKey();
+        if (key.isEmpty()) {
+            message.setKey(UUID.randomUUID().toString());
+        }
+
+        return repository.save(message);
     }
 
-    @RequestMapping(value="/messages", method=RequestMethod.GET)
-    public Message[] read() {
-        Message[] messages = new Message[0];
-        return messages;
+    @RequestMapping(method=RequestMethod.GET)
+    public Iterable<Message> read() {
+        return repository.findAll();
     }
 
-    @RequestMapping(value="/messages", method=RequestMethod.HEAD)
-    public Message[] head(@PathVariable("key") String key) {
-        Message[] messages = new Message[0];
-        return messages;
+    @RequestMapping(method=RequestMethod.HEAD)
+    public void head() {
+        return;
     }
 }

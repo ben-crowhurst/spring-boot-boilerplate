@@ -50,35 +50,35 @@ public class Message {
         content = value;
     }
 
-    private String from = "";
+    private String fromRecipient = "";
     public String getFromRecipient() {
-        return from;
+        return fromRecipient;
     }
     public void setFromRecipient(String value) {
-        from = value;
+        fromRecipient = value;
     }
 
-    private String[] to = { };
+    private String[] toRecipients = { };
     public String[] getToRecipients() {
-        return to;
+        return toRecipients;
     }
     public void setToRecipients(String[] values) {
-        to = values;
+        toRecipients = values;
     }
 
-    private String[] cc = { };
+    private String[] ccRecipients = { };
     public String[] getCarbonCopyRecipients() {
-        return cc;
+        return ccRecipients;
     }
     public void setCarbonCopyRecipients(String[] values) {
-        cc = values;
+        ccRecipients = values;
     }
 
-    private String[] bcc = { };
+    private String[] bccRecipients = { };
     public String[] getBlindCarbonCopyRecipients() {
-        return bcc;
+        return bccRecipients;
     }
     public void setBlindCarbonCopyRecipients(String[] values) {
-        bcc = values;
+        bccRecipients = values;
     }
 }
