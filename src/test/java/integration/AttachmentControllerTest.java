@@ -33,8 +33,8 @@ public class AttachmentControllerTest {
         String contentType = "text/html";
         byte[] content = "Why did the Flinstones have Christmas?".getBytes();
         Attachment attachment = collectionController.create(content, contentType);
-
         assertThat(repository.count(), is(1L));
+
         resourceController.delete(attachment.getKey());
         assertThat(repository.count(), is(0L));
     }
@@ -44,8 +44,8 @@ public class AttachmentControllerTest {
         String contentType = "text/html";
         byte[] content = "Why did the Flinstones have Christmas?".getBytes();
         Attachment attachment = collectionController.create(content, contentType);
-
         assertThat(repository.count(), is(1L));
+
         resourceController.delete("non-existent-key");
         assertThat(repository.count(), is(1L));
     }

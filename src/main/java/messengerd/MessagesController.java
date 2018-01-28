@@ -28,9 +28,4 @@ public class MessagesController {
     public Iterable<Message> read() {
         return repository.findAll();
     }
-
-    @RequestMapping(method=RequestMethod.HEAD)
-    public void head() {
-        return;
-    }
 }
