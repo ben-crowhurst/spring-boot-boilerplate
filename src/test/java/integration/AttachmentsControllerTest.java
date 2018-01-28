@@ -13,8 +13,15 @@ import org.springframework.beans.factory.annotation.*;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
-@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 public class AttachmentsControllerTest {
+    @Autowired
+    private AttachmentRepository repository;
+
+    @Before
+    public void reset() {
+        repository.deleteAll();
+    }
+
     @Autowired
     private AttachmentsController controller;
 
