@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.*;
 import messenger.data.*;
 
 @Service
-public class Dispatch implements Runnable {
+public class Daemon implements Runnable {
     private static List<MessageProvider> providers;
     @Autowired
     public void setProviders(List<MessageProvider> values) {
@@ -19,7 +19,7 @@ public class Dispatch implements Runnable {
     public void setup(@Value("${dispatch.delay:5000}") long delay, @Value("${dispatch.initialDelay:10000}") long initialDelay) {
         int corePoolSize = 1;
         ScheduledExecutorService executor = Executors.newScheduledThreadPool(corePoolSize);
-        executor.scheduleWithFixedDelay(new Dispatch(), initialDelay, delay, TimeUnit.MILLISECONDS);
+        executor.scheduleWithFixedDelay(new Daemon(), initialDelay, delay, TimeUnit.MILLISECONDS);
     }
 
     public void run() {
