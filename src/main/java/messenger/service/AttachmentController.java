@@ -4,6 +4,8 @@ import java.util.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.*;
 
+import messenger.data.*;
+
 @RestController
 @RequestMapping("/attachments/{key}")
 public class AttachmentController {

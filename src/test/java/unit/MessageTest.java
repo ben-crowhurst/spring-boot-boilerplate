@@ -1,4 +1,4 @@
-package messenger.service;
+package messenger.data;
 
 import org.junit.*;
 

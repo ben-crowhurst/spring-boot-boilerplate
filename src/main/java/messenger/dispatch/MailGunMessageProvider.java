@@ -1,7 +1,8 @@
 package messenger.dispatch;
 
-import messenger.service.*;
 import org.springframework.stereotype.*;
+
+import messenger.data.*;
 
 @Service
 public class MailGunMessageProvider implements MessageProvider {

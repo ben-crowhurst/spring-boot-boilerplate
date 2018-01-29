@@ -11,6 +11,8 @@ import org.springframework.test.context.junit4.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.*;
 
+import messenger.data.*;
+
 @SpringBootTest
 @RunWith(SpringRunner.class)
 public class AttachmentControllerTest {

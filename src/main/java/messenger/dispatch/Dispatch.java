@@ -5,6 +5,8 @@ import java.util.concurrent.*;
 import org.springframework.stereotype.*;
 import org.springframework.beans.factory.annotation.*;
 
+import messenger.data.*;
+
 @Service
 public class Dispatch implements Runnable {
     private static List<MessageProvider> providers;
