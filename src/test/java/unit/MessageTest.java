@@ -12,6 +12,7 @@ public class MessageTest {
     public void defaultInstanceValues() {
         assertThat(message.getCreatedTimestamp(), is(0L));
         assertThat(message.getStatus(), isEmptyString());
+        assertThat(message.getDeliveryAttempts(), is(0L));
         assertThat(message.getKey(), isEmptyString());
         assertThat(message.getContent(), isEmptyString());
         assertThat(message.getFromRecipient(), isEmptyString());

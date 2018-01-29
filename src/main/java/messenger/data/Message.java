@@ -34,6 +34,14 @@ public class Message {
         status = value;
     }
 
+    private long deliveryAttempts = 0;
+    public long getDeliveryAttempts() {
+        return deliveryAttempts;
+    }
+    public void setDeliveryAttempts(long value) {
+        deliveryAttempts = value;
+    }
+
     private String key = "";
     public String getKey() {
         return key;
