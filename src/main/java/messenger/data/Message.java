@@ -1,5 +1,6 @@
 package messenger.data;
 
+import java.util.*;
 import javax.persistence.*;
 
 @Entity
@@ -40,6 +41,14 @@ public class Message {
     }
     public void setDeliveryAttempts(long value) {
         deliveryAttempts = value;
+    }
+
+    private String[] errorLog = { };
+    public List<String> getErrorLog() {
+        return Arrays.asList(errorLog);
+    }
+    public void setErrorLog(List<String> values) {
+        errorLog = values.stream().toArray(String[]::new);
     }
 
     private String key = "";
