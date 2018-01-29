@@ -8,22 +8,27 @@ import org.springframework.beans.factory.annotation.*;
 import messenger.data.*;
 
 @Service
-public class Daemon implements Runnable {
-    private static List<MessageProvider> providers;
+public class Worker implements Runnable {
     @Autowired
-    public void setProviders(List<MessageProvider> values) {
-        providers = values;
-    }
+    private List<MessageProvider> messageProviders;
+
+    @Autowired
+    private MessageRepository messageRepository;
+
+    @Autowired
+    private AttachmentRepository attachmentRepository;
 
     @Autowired
     public void setup(@Value("${dispatch.delay:5000}") long delay, @Value("${dispatch.initialDelay:10000}") long initialDelay) {
         int corePoolSize = 1;
         ScheduledExecutorService executor = Executors.newScheduledThreadPool(corePoolSize);
-        executor.scheduleWithFixedDelay(new Daemon(), initialDelay, delay, TimeUnit.MILLISECONDS);
+        executor.scheduleWithFixedDelay(this, initialDelay, delay, TimeUnit.MILLISECONDS);
     }
 
     public void run() {
-        for (MessageProvider provider : providers) {
+        List<Message> messages = messageRepository.findByStatus("pending");
+
+        for (MessageProvider provider : messageProviders) {
             provider.send(null);
         }
     }
