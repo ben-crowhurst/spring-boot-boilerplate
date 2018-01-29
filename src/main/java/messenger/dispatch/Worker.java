@@ -39,16 +39,17 @@ public class Worker implements Runnable {
     @Autowired
     private List<MessageProvider> messageProviders;
 
-    @Autowired
-    private AttachmentRepository attachmentRepository;
-
     public void send(Message message) {
         for (MessageProvider provider : messageProviders) {
             try {
                 provider.send(message);
                 message.setStatus("delivered");
                 messageRepository.save(message);
+                return;
             } catch (MessageProviderException mpe) {
+                List<String> log = message.getErrorLog();
+                log.add("["+mpe.getProviderName()+"] "+mpe.getMessage());
+                message.setErrorLog(log);
                 logger.error("Message delivery failure.", mpe);
             }
         }
