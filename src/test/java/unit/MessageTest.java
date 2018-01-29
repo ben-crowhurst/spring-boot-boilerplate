@@ -15,6 +15,7 @@ public class MessageTest {
         assertThat(message.getDeliveryAttempts(), is(0L));
         assertThat(message.getErrorLog(), is(empty()));
         assertThat(message.getKey(), isEmptyString());
+        assertThat(message.getSubject(), isEmptyString());
         assertThat(message.getContent(), isEmptyString());
         assertThat(message.getFromSender(), isEmptyString());
         assertThat(message.getToRecipients(), is(emptyArray()));

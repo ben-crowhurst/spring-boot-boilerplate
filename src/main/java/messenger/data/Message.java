@@ -59,6 +59,14 @@ public class Message {
         key = value;
     }
 
+    private String subject = "";
+    public String getSubject() {
+        return subject;
+    }
+    public void setSubject(String value) {
+        subject = value;
+    }
+
     private String content = "";
     public String getContent() {
         return content;
