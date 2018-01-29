@@ -67,12 +67,12 @@ public class Message {
         content = value;
     }
 
-    private String fromRecipient = "";
-    public String getFromRecipient() {
-        return fromRecipient;
+    private String fromSender = "";
+    public String getFromSender() {
+        return fromSender;
     }
-    public void setFromRecipient(String value) {
-        fromRecipient = value;
+    public void setFromSender(String value) {
+        fromSender = value;
     }
 
     private String[] toRecipients = { };

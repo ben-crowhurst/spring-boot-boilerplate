@@ -52,7 +52,7 @@ public class MessagesControllerTest {
         assertThat(message.getStatus(), equalToIgnoringCase("pending"));
         assertThat(message.getKey(), not(isEmptyString()));
         assertThat(message.getContent(), isEmptyString());
-        assertThat(message.getFromRecipient(), isEmptyString());
+        assertThat(message.getFromSender(), isEmptyString());
         assertThat(message.getToRecipients(), is(emptyArray()));
         assertThat(message.getCarbonCopyRecipients(), is(emptyArray()));
         assertThat(message.getBlindCarbonCopyRecipients(), is(emptyArray()));
@@ -93,8 +93,8 @@ public class MessagesControllerTest {
         String content = "Why do noses run, while feet smell?";
         message.setContent(content);
 
-        String fromRecipient = "ben.crowhurst@comp.org";
-        message.setFromRecipient(fromRecipient);
+        String fromSender = "ben.crowhurst@comp.org";
+        message.setFromSender(fromSender);
 
         String[] toRecipients = { "tom.crowhurst@comp.org", "ben.crowhurst@comp.org" };
         message.setToRecipients(toRecipients);
@@ -109,7 +109,7 @@ public class MessagesControllerTest {
 
         long now = Instant.now().getEpochSecond();
         assertThat(message.getContent(), is(content));
-        assertThat(message.getFromRecipient(), is(fromRecipient));
+        assertThat(message.getFromSender(), is(fromSender));
         assertThat(message.getToRecipients(), arrayContainingInAnyOrder(toRecipients));
         assertThat(message.getCarbonCopyRecipients(), arrayContainingInAnyOrder(ccRecipients));
         assertThat(message.getBlindCarbonCopyRecipients(), arrayContainingInAnyOrder(bccRecipients));
