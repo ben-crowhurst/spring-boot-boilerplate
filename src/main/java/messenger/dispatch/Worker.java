@@ -2,6 +2,7 @@ package messenger.dispatch;
 
 import java.util.*;
 import java.util.concurrent.*;
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.*;
 import org.springframework.beans.factory.annotation.*;
 
@@ -9,27 +10,56 @@ import messenger.data.*;
 
 @Service
 public class Worker implements Runnable {
-    @Autowired
-    private List<MessageProvider> messageProviders;
+    private static final Logger logger = Logger.getLogger(Worker.class);
+
+    private long maxDeliveryAttempts = 0;
 
     @Autowired
-    private MessageRepository messageRepository;
+    public void Worker(
+        @Value("${dispatch.delay:5000}") long delay,
+        @Value("${dispatch.initialDelay:10000}") long initialDelay,
+        @Value("${dispatch.maxDeliveryAttempts:3}") long maxDeliveryAttempts
+    ) {
+        this.maxDeliveryAttempts = maxDeliveryAttempts;
 
-    @Autowired
-    private AttachmentRepository attachmentRepository;
-
-    @Autowired
-    public void setup(@Value("${dispatch.delay:5000}") long delay, @Value("${dispatch.initialDelay:10000}") long initialDelay) {
         int corePoolSize = 1;
         ScheduledExecutorService executor = Executors.newScheduledThreadPool(corePoolSize);
         executor.scheduleWithFixedDelay(this, initialDelay, delay, TimeUnit.MILLISECONDS);
     }
 
-    public void run() {
-        List<Message> messages = messageRepository.findByStatus("pending");
+    @Autowired
+    private MessageRepository messageRepository;
 
-        for (MessageProvider provider : messageProviders) {
-            provider.send(null);
+    public void run() {
+        for (Message message : messageRepository.findByStatus("pending")) {
+            send(message);
         }
+    }
+
+    @Autowired
+    private List<MessageProvider> messageProviders;
+
+    @Autowired
+    private AttachmentRepository attachmentRepository;
+
+    public void send(Message message) {
+        for (MessageProvider provider : messageProviders) {
+            try {
+                provider.send(message);
+                message.setStatus("delivered");
+                messageRepository.save(message);
+            } catch (MessageProviderException mpe) {
+                logger.error("Message delivery failure.", mpe);
+            }
+        }
+
+        long deliveryAttempts = message.getDeliveryAttempts() + 1;
+        message.setDeliveryAttempts(deliveryAttempts);
+
+        if (deliveryAttempts >= maxDeliveryAttempts) {
+            message.setStatus("failed");
+        }
+
+        messageRepository.save(message);
     }
 }
