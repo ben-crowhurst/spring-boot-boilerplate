@@ -1,11 +1,13 @@
 package messenger.dispatch;
 
 class MessageProviderException extends RuntimeException {
-    public MessageProviderException() {
-        return;
+    private final String providerName;
+    public String getProviderName() {
+        return providerName;
     }
 
-    public MessageProviderException(String message) {
-        super(message);
+    public MessageProviderException(String providerName, String errorMessage) {
+        super(errorMessage);
+        this.providerName = providerName;
     }
 }
