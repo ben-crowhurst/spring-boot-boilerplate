@@ -1,4 +1,4 @@
-# spring-boot-tut
+# Messenger Java
 Email messenger with fail-over.  See issues for outstanding work items.
 
 # Dependendices
