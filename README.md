@@ -7,6 +7,7 @@ Email messenger with fail-over.  See issues for outstanding work items.
 
 # Build
 mvn spring-boot:run
+
 mvn test
 
 # Send
